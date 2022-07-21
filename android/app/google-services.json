@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "425103102520",
+    "project_id": "myams-33afc",
+    "storage_bucket": "myams-33afc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425103102520:android:2a2cd47c2806db495f4ccd",
+        "android_client_info": {
+          "package_name": "com.sicklestudios.myams"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425103102520-ibdm3i0e7phlugqs5rp74mgs0h533k5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHq7eYDiMimcBhVcib4U8EiuESrzvSvNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425103102520-ibdm3i0e7phlugqs5rp74mgs0h533k5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
