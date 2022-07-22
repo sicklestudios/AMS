@@ -16,43 +16,6 @@ class _MyLoginState extends State<MySignup> {
   final TextEditingController _nameController=TextEditingController();
   final TextEditingController _emailController=TextEditingController();
   final TextEditingController _passController=TextEditingController();
-  //
-  // Uint8List? _image;
-  // Color _pickImageShowColor=Colors.black54;
-  //
-  // pickImage(ImageSource imageSource) async
-  // {
-  //   final ImagePicker _picker = ImagePicker();
-  //   XFile? xfile= await _picker.pickImage(source: imageSource);
-  //   if(xfile!=null)
-  //   {
-  //     return await xfile.readAsBytes();
-  //   }
-  //   //Prompt that no image is selected
-  //   print("No image is selected");
-  // }
-  // void pickImageFromGallery()async
-  // {
-  //   final ByteData bytes = await rootBundle.load('assets/default_img.png');
-  //   final Uint8List tempImage = bytes.buffer.asUint8List();
-  //   // StorageMethods().uploadImageToStorage("profile_pics",tempImage,false);
-  //   Uint8List inList=await pickImage(ImageSource.gallery);
-  //   setState((){
-  //     _image=inList;
-  //     if(_image!=null)
-  //     {
-  //       _pickImageShowColor=Colors.transparent;
-  //     }
-  //     else
-  //     {
-  //       _image=tempImage;
-  //       _pickImageShowColor=Colors.black;
-  //     }
-  //   });
-  //   // showFloatingFlushBar(context,"","Uploading Profile");
-  //   // imgUrl=await StorageMethods().uploadImageToStorage("profile_pics",_image!,false);
-  //   // showSnackBar("Image Uploaded Successfully", context);
-  // }
   @override
   void dispose() {
     // TODO: implement dispose
@@ -64,14 +27,14 @@ class _MyLoginState extends State<MySignup> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      // decoration: const BoxDecoration(
-      //     image: DecorationImage(
-      //         image: AssetImage('assets/register.png'),
-      //         fit: BoxFit.fill
-      //     )
-      // ),
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/register.png'),
+              fit: BoxFit.fill
+          )
+      ),
       child: Scaffold(
-        // backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         body: Stack(
           children: [
             Container(
@@ -81,7 +44,7 @@ class _MyLoginState extends State<MySignup> {
                    Text(
                     "Welcome",
                     style:TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 45.0
                     ) ,
                   ),
@@ -91,7 +54,7 @@ class _MyLoginState extends State<MySignup> {
                   Text(
                     "Create Account",
                     style:TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 25.0
                     ) ,
                   ),

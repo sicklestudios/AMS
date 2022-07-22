@@ -64,8 +64,8 @@ void attendance(String value,model.Student st)
   student.attendance=int.parse(value);
   firebaseFirestore.collection('attendance').doc(student.date).collection('info').doc(student.uid).update(student.toJson()).whenComplete(() =>print("done"));
   var values=firebaseFirestore.collection("users").doc(st.uid).get();
-  values.then((firestoreValue) => {
-    _addValuesAdmin(value,firestoreValue)
+  values.then((fireStoreValue) => {
+    _addValuesAdmin(value,fireStoreValue)
   });
 }
 _addValuesAdmin(value,DocumentSnapshot doc)
@@ -88,8 +88,9 @@ void setStudentsAttendanceAdmin()
 }
 _decide(model.User value)
 {
-  if(value.email.toString()!='studentsthere@gmail.com')
+  if(value.email.toString()!='studentsthere@gmail.com') {
     markAttendance(value, '1');
+  }
 }
 
 void requestLeave(model.User user)

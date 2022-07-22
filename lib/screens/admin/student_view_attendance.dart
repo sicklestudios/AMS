@@ -67,7 +67,7 @@ class _StViewAttendanceState extends State<StViewAttendance> {
                     GroupedListView<dynamic, String>(
                       shrinkWrap: true,
                       elements: allValues,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       cacheExtent: 0,
                       groupBy: (element){
                         return element.date;

@@ -24,15 +24,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return  Container(
-        // decoration: const BoxDecoration(
-        //     image: DecorationImage(
-        //       image: AssetImage('assets/login.png'),
-        //       fit: BoxFit.fill
-        //     )
-        // ),
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/login.png'),
+              fit: BoxFit.fill
+            )
+        ),
       child: Scaffold(
-        // backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         body: Stack(
           children: [
             Container(
@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: const Text(
                 "Welcome Back",
                 style:TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 50.0
                 ) ,
               ),

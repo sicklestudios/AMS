@@ -223,7 +223,6 @@ class _StudentCardState extends State<_StudentCard> {
     );
   }
 }
-
 class _Buttons extends StatefulWidget {
   final model.User user;
   const _Buttons({
@@ -243,38 +242,56 @@ class _ButtonsState extends State<_Buttons> {
   {
     return await firebaseFirestore.collection('attendance').doc(getDate()).collection('info').doc(firebaseAuth.currentUser?.uid).get();
   }
+  int val=100;
   @override
   Widget build(BuildContext context) {
+    var getAttend=getAttendance();
     getAttendance().then((value) =>
-        setState(() {
-          int val=model.Student.getValuesFromSnap(value!).attendance;
-          if(val==2)
-          {
-            markLeave='Leave Allotted';
-            markAttendanceString=markLeave;
+    {
+      setState(() {
+        val = model.Student
+            .getValuesFromSnap(value!)
+            .attendance;
+        if (val == 2) {
+          markLeave = 'Leave Allotted';
+          markAttendanceString = markLeave;
+        }
+        else if (val != 0 && val != 10) {
+          markAttendanceString = "Mark Attendance";
+          if (int.parse(widget.user.leaves!) <= 6) {
+            shouldInform = false;
+            markLeave = 'Mark Leave';
           }
-          else if(val!=0 && val!=10)
-          {
-            markAttendanceString="Mark Attendance";
-            if(int.parse(widget.user.leaves!)<=6)
-              {
-                shouldInform=false;
-                markLeave='Mark Leave';
-              }
-            else
-              {
-                shouldInform=true;
-                markLeave='Not Applicable';
-              }
+          else {
+            shouldInform = true;
+            markLeave = 'Not Applicable';
           }
-          else if (val==10)
+        }
+        else if (val == 10) {
+          markLeave = 'Leave Requested';
+          markAttendanceString = "Leave Requested";
+        }
+      })
+    }).
+    onError((error, stackTrace) => {
+      setState(() {
+        if(val==100)
+        {
+          markAttendanceString="Mark Attendance";
+          if(int.parse(widget.user.leaves!)<=6)
           {
-            markLeave='Leave Requested';
-            markAttendanceString="Leave Requested";
+            shouldInform=false;
+            markLeave='Mark Leave';
           }
+          else
+          {
+            shouldInform=true;
+            markLeave='Not Applicable';
+          }
+        }
+      })
+    });
 
-        })
-    );
     return Column(
       children: [
         Row(
@@ -351,7 +368,7 @@ class _ListStudentAttendanceState extends State<_ListStudentAttendance> {
               DocumentSnapshot doc = snapshot.data!.docs[i];
               fillList(doc);
             }
-            return show? Column(
+            return show?Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 25.0),
@@ -365,6 +382,7 @@ class _ListStudentAttendanceState extends State<_ListStudentAttendance> {
                       },
                       child: const Text('Refresh')),
                 ),
+                allValues.isNotEmpty?
                 GroupedListView<dynamic, String>(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -402,24 +420,12 @@ class _ListStudentAttendanceState extends State<_ListStudentAttendance> {
                   useStickyGroupSeparators: true, // optional
                   floatingHeader: true, // optional
                   order: GroupedListOrder.DESC, // optional
-                ),
+                ):
+                const Center(child: Text("Nothing to Show"))
               ],
-            ): const Center(
+            ):const Center(
                 child: CircularProgressIndicator()
           );
-
-            // ListView.separated(
-            //     physics: const NeverScrollableScrollPhysics(),
-            //     shrinkWrap: true,
-            //     separatorBuilder: (context, index) {
-            //       return const Divider();
-            //     },
-            //     itemCount: allValues.length,
-            //     itemBuilder: (context, index) {
-            //       return showWidget(allValues[index]);
-            //     }):const Center(
-            //   child: Center(child: CircularProgressIndicator()),
-            // );
           } else {
             print("No data found");
             return const Text("No data");
